@@ -38,7 +38,7 @@ dump_boot;
 
 # begin ramdisk changes
 
-patch_cmdline androidboot.selinux androidboot.selinux=permissive
+# patch_cmdline androidboot.selinux androidboot.selinux=permissive
 
 # end ramdisk changes
 
