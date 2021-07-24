@@ -1,5 +1,13 @@
 #!/system/bin/sh
 
-# ZRAM Setup
-BDEV=/dev/block/platform/bootdevice/by-name/cust
-realpath $BDEV > /sys/block/zram0/backing_dev
+#swapfile
+file=/data/swapfile
+if ! [ -f "$file" ]; then
+  fallocate -l 2G $file
+  mkswap $file
+  echo "swap created"
+else
+  echo "swap already present"
+fi
+swapon -p 1 $file
+echo 100 > /proc/sys/vm/overcommit_ratio
