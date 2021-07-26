@@ -9,5 +9,5 @@ if ! [ -f "$file" ]; then
 else
   echo "swap already present"
 fi
-swapon -p 1 $file
+swapon -p 0 $file
 echo 100 > /proc/sys/vm/overcommit_ratio
