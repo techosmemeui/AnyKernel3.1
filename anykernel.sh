@@ -4,13 +4,13 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Neutrino mod Genom Kernel for Redmi 9 by rama982@telegram
+kernel.string=Genom Kernel by rama982@telegram
 do.devicecheck=0
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-#device.name1=lancelot
+device.name1=
 supported.versions=
 supported.patchlevels=
 '; } # end properties
