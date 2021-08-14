@@ -99,7 +99,7 @@ else
 fi
 # Key select end
 
-# Select if ram ext aka swapfile will be enabled
+# Select if ram ext aka swapfile will be enabled start
 if $NEW; then #true
   ui_print " "
   ui_print "Volume UP is pressed:"
@@ -111,8 +111,25 @@ else #false
   ui_print " "
   ui_print "Volume DOWN is pressed:"
   ui_print "RAM EXT Disabled!"
-  ui_print " "
 fi
+# Select if ram ext aka swapfile will be enabled end
+
+# genom start
+
+ui_print " "
+ui_print "Removing file needed for this kernel"
+sleep 1
+ui_print " "
+ui_print "Remounting system and vendor rw"
+mount -o remount,rw /system_root && ui_print "- mount system done"
+mount -o remount,rw /vendor && ui_print "- mount vendor done"
+sleep 1
+ui_print " "
+ui_print "Removing file"
+rm /system_root/system/etc/mcd_default.conf
+rm /vendor/etc/fstab.enableswap && ui_print "- file removed" || ui_print "- file already removed"
+
+# genom end
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
