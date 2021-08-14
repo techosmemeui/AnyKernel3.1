@@ -1,15 +1,17 @@
 #!/system/bin/sh
 
-exec > /dev/kmsg 2>&1
-
 # swapfile
 file=/data/swapfile
 if ! [ -f "$file" ]; then
-  dd if=/dev/zero of=$file bs=100M count=15
+  dd if=/dev/zero of=$file bs=100M count=18
   mkswap $file
-  echo "[Genom] swapfile created"
+  echo "[Genom] swapfile created" > /proc/bootprof
 else
-  echo "[Genom] swapfile already present"
+  echo "[Genom] swapfile already present" > /proc/bootprof
 fi
 swapon -p 0 $file
-echo "[Genom] swapfile enabled"
+if [ $? -eq 0 ]; then
+  echo "[Genom] swapfile enabled" > /proc/bootprof
+else
+  echo "[Genom] cannot enable swapfile" > /proc/bootprof
+fi
