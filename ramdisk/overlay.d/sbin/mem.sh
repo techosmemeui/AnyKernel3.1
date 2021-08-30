@@ -1,5 +1,11 @@
 #!/system/bin/sh
 
+# swapfile
+file=/data/swapfile
+if [ -f "$file" ]; then
+    rm $file
+fi
+
 # Memory tuning
 function configure_memory_parameters() {
     # Set Memory parameters.
