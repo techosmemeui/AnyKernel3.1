@@ -46,7 +46,10 @@ function configure_memory_parameters() {
     fi
 
     # Setup memfree
-    # echo "9543,19086,28629,38172,47715,57258" > /sys/module/lowmemorykiller/parameters/minfree
+    echo "18432,23040,27648,38708,120640,144768" > /sys/module/lowmemorykiller/parameters/minfree
+
+    # Enable adaptive LMK for all targets
+    echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 
     # Enable oom_reaper
     if [ -f /sys/module/lowmemorykiller/parameters/oom_reaper ]; then
